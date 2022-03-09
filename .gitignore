@@ -1,55 +1,127 @@
-backend/db.sqlite3
-backend/db.sqlite3
-backend/config/__pycache__/__init__.cpython-310.pyc
-backend/config/__pycache__/settings.cpython-310.pyc
-backend/config/__pycache__/urls.cpython-310.pyc
-backend/config/__pycache__/wsgi.cpython-310.pyc
-backend/movie/__pycache__/__init__.cpython-310.pyc
-backend/movie/__pycache__/admin.cpython-310.pyc
-backend/movie/__pycache__/apps.cpython-310.pyc
-backend/movie/__pycache__/models.cpython-310.pyc
-backend/movie/__pycache__/serializers.cpython-310.pyc
-backend/movie/__pycache__/urls.cpython-310.pyc
-backend/movie/__pycache__/views.cpython-310.pyc
-backend/movie/migrations/0004_movie_votes.py
-backend/movie/migrations/0005_alter_movie_date_watched.py
-backend/movie/migrations/__pycache__/__init__.cpython-310.pyc
-backend/movie/migrations/__pycache__/0001_initial.cpython-310.pyc
-backend/movie/migrations/__pycache__/0002_initial.cpython-310.pyc
-backend/movie/migrations/__pycache__/0003_rename_ratings_movie_rating_movie_ratingcount.cpython-310.pyc
-backend/movie/migrations/__pycache__/0004_movie_votes.cpython-310.pyc
-backend/movie/migrations/__pycache__/0005_alter_movie_date_watched.cpython-310.pyc
-backend/review/__pycache__/__init__.cpython-310.pyc
-backend/review/__pycache__/admin.cpython-310.pyc
-backend/review/__pycache__/apps.cpython-310.pyc
-backend/review/__pycache__/models.cpython-310.pyc
-backend/review/__pycache__/serializers.cpython-310.pyc
-backend/review/__pycache__/urls.cpython-310.pyc
-backend/review/__pycache__/views.cpython-310.pyc
-backend/review/migrations/__pycache__/__init__.cpython-310.pyc
-backend/review/migrations/__pycache__/0001_initial.cpython-310.pyc
-backend/review/migrations/__pycache__/0002_initial.cpython-310.pyc
-backend/review/migrations/__pycache__/0003_review_description_review_rating.cpython-310.pyc
-backend/user/__pycache__/__init__.cpython-310.pyc
-backend/user/__pycache__/admin.cpython-310.pyc
-backend/user/__pycache__/apps.cpython-310.pyc
-backend/user/__pycache__/managers.cpython-310.pyc
-backend/user/__pycache__/models.cpython-310.pyc
-backend/user/__pycache__/serializers.cpython-310.pyc
-backend/user/__pycache__/views.cpython-310.pyc
-backend/user/migrations/0002_user_numvotes.py
-backend/user/migrations/__pycache__/__init__.cpython-310.pyc
-backend/user/migrations/__pycache__/0001_initial.cpython-310.pyc
-backend/user/migrations/__pycache__/0002_user_numvotes.cpython-310.pyc
-backend/vote/__init__.py
-backend/vote/__pycache__/__init__.cpython-310.pyc
-backend/vote/__pycache__/admin.cpython-310.pyc
-backend/vote/__pycache__/apps.cpython-310.pyc
-backend/vote/__pycache__/models.cpython-310.pyc
-backend/vote/__pycache__/serializers.cpython-310.pyc
-backend/vote/__pycache__/views.cpython-310.pyc
-backend/vote/migrations/__init__.py
-backend/vote/migrations/0001_initial.py
-backend/vote/migrations/__pycache__/__init__.cpython-310.pyc
-backend/vote/migrations/__pycache__/0001_initial.cpython-310.pyc
-backend/db.sqlite3
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Backup files # 
+*.bak 
+
+# If you are using PyCharm # 
+.idea/**/workspace.xml 
+.idea/**/tasks.xml 
+.idea/dictionaries 
+.idea/**/dataSources/ 
+.idea/**/dataSources.ids 
+.idea/**/dataSources.xml 
+.idea/**/dataSources.local.xml 
+.idea/**/sqlDataSources.xml 
+.idea/**/dynamic.xml 
+.idea/**/uiDesigner.xml 
+.idea/**/gradle.xml 
+.idea/**/libraries 
+*.iws /out/ 
+
+# Python # 
+*.py[cod] 
+*$py.class 
+
+# Distribution / packaging 
+.Python build/ 
+develop-eggs/ 
+dist/ 
+downloads/ 
+eggs/ 
+.eggs/ 
+lib/ 
+lib64/ 
+parts/ 
+sdist/ 
+var/ 
+wheels/ 
+*.egg-info/ 
+.installed.cfg 
+*.egg 
+*.manifest 
+*.spec 
+
+# Installer logs 
+pip-log.txt 
+pip-delete-this-directory.txt 
+
+# Unit test / coverage reports 
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
+
+# Jupyter Notebook 
+.ipynb_checkpoints 
+
+# pyenv 
+.python-version 
+
+# celery 
+celerybeat-schedule.* 
+
+# SageMath parsed files 
+*.sage.py 
+
+# Environments 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+backend/cacaenv
+
+# mkdocs documentation 
+/site 
+
+# mypy 
+.mypy_cache/ 
+
+# Sublime Text # 
+*.tmlanguage.cache 
+*.tmPreferences.cache 
+*.stTheme.cache 
+*.sublime-workspace 
+*.sublime-project 
+
+# sftp configuration file 
+sftp-config.json 
+
+# Package control specific files Package 
+Control.last-run 
+Control.ca-list 
+Control.ca-bundle 
+Control.system-ca-bundle 
+GitHub.sublime-settings 
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
+
+# Mac os
+.DS_Store
+
+# Node
+node_modules
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
