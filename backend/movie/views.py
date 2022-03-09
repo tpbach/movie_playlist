@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from rest_framework.response import Response
 from movie.models import Movie
-from review.models import Review
 from .serializers import MovieSerializer
-import json
+from django.utils import timezone
+from vote.models import Vote
+from rest_framework.decorators import api_view
 
 # Create your views here.
 class MovieList(APIView):
@@ -57,3 +58,30 @@ class MovieDetails(APIView):
             return HttpResponse("Successfully deleted the movie.", status=201)
         except  Movie.DoesNotExist:
             return HttpResponse("Movie not found.", status=404) 
+
+@api_view(['POST'])
+def watched(request, movie_id):
+    try:
+        movie = Movie.objects.get(pk=movie_id)
+        if movie.watched:
+            data = {
+                "watched":"False",
+            }
+        else:
+            data = {
+                "watched":"True",
+                "date_watched":timezone.now(),
+                "votes":"0"
+            }
+
+        serializer = MovieSerializer(movie, data=data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            Vote.objects.filter(movie=movie).delete()
+            return Response(serializer.data, status=201)
+        else:
+            print(serializer.errors)
+            return Response(serializer.errors, status=400)
+
+    except  Movie.DoesNotExist:
+        return HttpResponse("Movie not found.", status=404) 

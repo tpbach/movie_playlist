@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.urls import include, path
 from movie.views import MovieDetails
-from review.views import MovieReviews
-
-
+import movie.views as MovieView
+import vote.views as VoteView
 
 urlpatterns = [
     path('<int:movie_id>/', MovieDetails.as_view()),
     path('<int:movie_id>/reviews/', include('review.urls')),
+    path('<int:movie_id>/upvote/', VoteView.upVote),
+    path('<int:movie_id>/downvote/', VoteView.downVote),
+    path('<int:movie_id>/watched/', MovieView.watched),
 ]

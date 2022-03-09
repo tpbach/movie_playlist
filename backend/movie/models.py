@@ -9,9 +9,9 @@ class Movie(models.Model):
     rating = models.IntegerField(default=0)
     ratingCount = models.IntegerField(default=0)
     date_added = models.DateTimeField(default = timezone.now)
-
+    votes = models.IntegerField(default=0)
     watched = models.BooleanField(default=False)
-    date_watched = models.DateField(blank=True, null=True)
+    date_watched = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.title

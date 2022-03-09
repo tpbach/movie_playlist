@@ -29,12 +29,11 @@ class MovieReviews(APIView):
             ratings = []
 
             # Get sum of all ratings
-            if len(all_reviews) > 1:
+            if len(all_reviews) > 0:
                 for review in all_reviews:
                     ratings.append(review["rating"])
             ratings.append(int(request_data["rating"]))
 
-            print(ratings)
             newRating = int(mean(ratings))
 
             # Update movie
@@ -66,13 +65,69 @@ class ReviewDetails(APIView):
     def put(self, request, movie_id, review_id):
         try:
             review = Review.objects.get(pk=review_id)
+
+            reviewSerializer = ReviewSerializer(review, data=request.data, partial=True)
+            if reviewSerializer.is_valid():
+                reviewSerializer.save()
+                 # Update movie rating
+                movie = Movie.objects.get(pk=movie_id)
+                all_reviews = Review.objects.filter(movie=movie).values("rating")
+                ratings = []
+
+                # Get sum of all ratings
+                if len(all_reviews) > 0:
+                    for review in all_reviews:
+                        ratings.append(review["rating"])
+                
+                newRating = int(mean(ratings))
+                
+                # Update movie
+                updatedData = {
+                    "rating" : str(newRating),
+                    "ratingCount" : str(movie.ratingCount+1)
+                }
+                
+                movieSerializer = MovieSerializer(movie, data=updatedData, partial=True)
+                
+                if movieSerializer.is_valid():
+                    # Save movie and review
+                    movieSerializer.save()
+                    return Response(reviewSerializer.data, status=200)
+            else:
+              return Response(reviewSerializer.errors, status=400)  
+           
         except Review.DoesNotExist:
             return HttpResponse("Review does not exists.", status=404)
 
     def delete(self, request, movie_id, review_id):
         try:
             review = Review.objects.get(pk=review_id)
+            review.delete()
 
+            # Update movie rating
+            movie = Movie.objects.get(pk=movie_id)
+            all_reviews = Review.objects.filter(movie=movie).values("rating")
+            ratings = []
+
+            # Get sum of all ratings
+            if len(all_reviews) > 0:
+                for review in all_reviews:
+                    ratings.append(review["rating"])
+            
+            newRating = int(mean(ratings))
+            
+            # Update movie
+            updatedData = {
+                "rating" : str(newRating),
+                "ratingCount" : str(movie.ratingCount-1)
+            }
+            
+            movieSerializer = MovieSerializer(movie, data=updatedData, partial=True)
+            
+            if movieSerializer.is_valid():
+                # Save movie and review
+                movieSerializer.save()
+            return HttpResponse("Successfully deleted the review.", status=201)
         except Review.DoesNotExist:
             return HttpResponse("Review does not exists.", status=404)
 
